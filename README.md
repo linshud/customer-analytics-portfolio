@@ -222,7 +222,7 @@ This writes a chart to `visualizations/` based on `data/cohort_retention.csv`; c
 1. Obtain the **UCI Online Retail Dataset** from its original dataset provider.
 2. Place the source workbook / transaction files at the paths expected by the relevant scripts, or update those paths locally.
 3. Review each script's required inputs and outputs before running the preparation, cleaning, validation, RFM, and cohort workflows.
-4. If reproducing the database analysis, install **MySQL 8**, import the required cleaned transaction CSV into an appropriately configured local database, then execute the SQL scripts.
+4. If reproducing the database analysis, install **MySQL 8** and run `sql/01_create_database.sql` to create the `customer_analytics` database and empty `sales_clean_full` table. Import `data/online_retail_sales_clean.csv` into that table using MySQL Workbench's Table Data Import Wizard (map the CSV columns to the matching table columns), then run `sql/02_import_validation.sql` through `sql/07_repeat_purchase_and_concentration.sql` in order.
 5. Open `Customer_Analytics_v2.pbix` in Power BI Desktop; if you refresh it, update source paths in Power Query to your local file locations.
 
 **Reproducibility scope:** This repository intentionally omits large transaction CSVs and some intermediate inputs. Consequently, **not every script can run end-to-end immediately after a clone**. The supplied results and visualizations can be inspected independently; full regeneration requires the original data and local configuration. MySQL credentials must be supplied locally and **must never be committed**.
