@@ -16,3 +16,8 @@ data/Online Retail.xlsx
 
 *_backup.py
 *.log
+
+# Generated diagnostic files and chart backups
+data/duplicate_records.csv
+data/excluded_transactions.csv
+visualizations/*_old_backup.png
