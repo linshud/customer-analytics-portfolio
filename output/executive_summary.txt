@@ -1,116 +1,122 @@
 # Customer Analytics — Executive Summary
 
-**Project:** Customer Segmentation, Retention & Revenue Analysis
-**Author:** Wei
-**Tools:** Python (pandas, matplotlib, seaborn), MySQL, Power BI
-**Dataset:** UCI Online Retail Dataset
+**Project:** Customer Segmentation, Retention & Revenue Analysis  
+**Author:** Wei  
+**Tools:** Python (pandas, NumPy, matplotlib, seaborn), MySQL 8, Power BI, Excel  
+**Dataset:** UCI Online Retail Dataset  
+**Analysis period:** December 1, 2010 – December 9, 2011
 
 ---
 
 ## 1. Project Overview
 
-This project analyzes e-commerce transaction data to understand customer value, purchasing behavior, retention performance, and churn risk.
+This project analyzes historical e-commerce transactions to understand customer value, purchasing behavior, repeat purchasing, and re-engagement opportunities. The workflow combines Python data preparation and RFM segmentation, MySQL sales analysis, cohort retention analysis, and a Power BI dashboard.
 
-The objective is to transform raw transaction data into actionable business insights through SQL analysis, Python data analytics, RFM segmentation, cohort retention analysis, and customer risk identification.
+The transaction-level sales analysis includes valid positive-price sales lines. Customer-level RFM and cohort analyses use only transactions with an identifiable CustomerID.
 
-## 2. SQL Business Overview
-
-Based on the SQL analysis of `sales_clean_full`:
+## 2. Sales Performance (SQL)
 
 | Metric | Result |
 |---|---:|
-| Total transaction rows | 524,878 |
-| Total orders | 19,960 |
-| Total customers | 4,338 |
-| Total sales | £10,642,110.80 |
+| Positive sales transaction lines | 524,878 |
+| Distinct invoices | 19,960 |
+| Identifiable customers | 4,338 |
+| Overall sales | £10,642,110.80 |
 | Average order value | £533.17 |
+
+**November 2011** had the highest monthly sales total among the observed full months:
+
+| November 2011 metric | Value |
+|---|---:|
+| Sales | £1,503,866.78 |
+| Orders | 2,769 |
+| Average order value | £543.11 |
+
+Compared with October 2011, November sales increased by approximately **30.6%** and order count by **35.7%**, while average order value decreased by approximately **3.8%**. The increase was therefore mainly associated with higher order volume.
+
+The dataset ends on December 9, 2011, so December is an incomplete month. Sales figures represent positive transactions; returns and cancellations were excluded during cleaning.
 
 ## 3. RFM Customer Segmentation
 
-The RFM analysis identified 4,338 customers and classified them into seven customer segments.
+RFM summarizes customer behavior using Recency (days since last purchase), Frequency (distinct invoices), and Monetary (identified-customer spending). Each measure is scored from 1 to 5, and the resulting 4,338 customers are assigned to seven business-oriented segments.
 
-| Customer Segment | Customers | Revenue Share |
+| Customer segment | Customers | Share of identified-customer spending |
 |---|---:|---:|
 | Core High-Value Customers | 925 | 67.12% |
 | High-Potential Customers | 395 | 9.96% |
-| Historical High-Spend Dormant | 243 | 6.97% |
+| Historical High-Spend Dormant Customers | 243 | 6.97% |
 | Active Repeat Customers | 500 | 6.09% |
 | General Dormant Customers | 1,206 | 4.65% |
 | Recent Low-Frequency Customers | 759 | 3.16% |
 | General Maintenance Customers | 310 | 2.05% |
+| **Total** | **4,338** | **100.00%** |
 
-**Key Finding:**
+**Identified-customer spending:** £8,887,208.89.
 
-Core high-value customers represent approximately 21.32% of the customer base but contribute 67.12% of RFM-based customer spending.
-
-Customer retention and loyalty among this segment should be a major business priority.
-
-Total RFM customer spending: £8,887,208.89.
+**Key finding:** The 925 core high-value customers represent approximately **21.32% of identifiable customers** but contribute **67.12% of identified-customer spending**. Retaining this group is a high-priority opportunity.
 
 ## 4. Cohort Retention Analysis
 
-Customers were grouped by their first recorded purchase month to evaluate repeat purchasing behavior over time.
+Customers are grouped by their first recorded purchase month. Month-1 retention is the percentage of a cohort that purchased again in the following calendar month.
 
-**Updated Key Findings:**
-
-- December 2010 cohort: 36.61% Month-1 retention.
-- January 2011 cohort: 22.06% Month-1 retention.
-- February 2011 cohort: 18.68% Month-1 retention.
-- March 2011 cohort: 15.04% Month-1 retention.
-- April 2011 cohort: 21.33% Month-1 retention.
-
-Several cohorts experienced substantial decreases in purchasing activity after their first purchase month.
-
-The results suggest an opportunity to improve early customer retention through second-purchase incentives, personalized recommendations, and targeted follow-up communication.
-
-**Limitation:** The dataset ends on December 9, 2011. Retention results involving December 2011 are affected by incomplete observation periods and should be interpreted cautiously.
-
-## 5. Churn Risk Analysis
-
-Customers with historical purchasing activity and extended periods of inactivity were identified for potential re-engagement.
-
-**At-Risk Customer Results:**
-
-| Risk Segment | Customers |
+| First-purchase cohort | Month-1 retention |
 |---|---:|
-| At Risk | 235 |
-| Needs Attention | 72 |
-| Cannot Lose | 4 |
-| **Total** | **311** |
+| December 2010 | 36.61% |
+| January 2011 | 22.06% |
+| February 2011 | 18.68% |
+| March 2011 | 15.04% |
+| April 2011 | 21.33% |
+| May 2011 | 19.01% |
+| November 2011 | 11.15% |
 
-These exploratory risk labels use a different framework from the final seven RFM segments; they must be validated before operational use.
+Several cohorts have Month-1 retention below 25%, suggesting an opportunity to improve early repeat purchasing through relevant follow-ups and second-purchase engagement.
 
-## 6. Key Business Recommendations
+**Observation-window limitation:** The dataset ends on December 9, 2011. December 2011 is only partially observed, and blank cells in the cohort matrix represent months outside the observation window, not zero retention.
 
-**1. Protect High-Value Customers**
+## 5. Revenue Reconciliation
 
-Develop loyalty programs, exclusive offers, and personalized engagement strategies for core high-value customers.
+Overall sales include transactions that cannot be attributed to an identified customer. The reconciliation separates these two populations:
 
-**2. Improve First-Month Retention**
+| Revenue scope | Amount | Share of overall sales |
+|---|---:|---:|
+| Identified-customer sales | £8,887,208.89 | 83.51% |
+| Unidentified-customer sales | £1,754,901.91 | 16.49% |
+| **Overall sales** | **£10,642,110.80** | **100.00%** |
 
-Introduce post-purchase reminders, targeted promotions, and second-purchase incentives to encourage repeat transactions.
+The 392,692 identified-customer sales lines represent 74.82% of sales lines. The remaining 132,186 lines (25.18%) have no CustomerID.
 
-**3. Launch Win-Back Campaigns**
+The separate **New versus Returning** monthly revenue chart uses identified-customer transactions only. “New” means revenue generated during a customer's first observed purchase calendar month; “Returning” means revenue in later calendar months. This is a different breakdown from the identified-versus-unidentified reconciliation above.
 
-Prioritize inactive customers with high historical spending and develop personalized re-engagement campaigns.
+## 6. Re-engagement Opportunity Exploration
 
-**4. Investigate Cohort Performance**
+The updated exploratory chart highlights three of the seven RFM segments for closer retention and win-back attention:
 
-Investigate possible explanations for the December 2010 cohort’s higher retention, taking cohort differences and incomplete observation windows into account.
+| Selected RFM segment | Customers |
+|---|---:|
+| General Dormant Customers | 1,206 |
+| Recent Low-Frequency Customers | 759 |
+| Historical High-Spend Dormant Customers | 243 |
+| **Total shown** | **2,208** |
 
-**5. Develop Customer-Specific Marketing**
+These are existing RFM segments, not separate churn-model classes. The chart is a descriptive view of historical purchase behavior; it is **not a trained or validated churn-prediction model**. Historical High-Spend Dormant Customers may be candidates for win-back outreach, while Recent Low-Frequency Customers may warrant second-purchase engagement. Campaign eligibility and rules should be validated before operational use.
 
-Use RFM segments to design differentiated marketing strategies rather than applying the same campaign to every customer.
+## 7. Key Business Recommendations
 
-## 7. Conclusion
+1. **Protect core high-value customers.** Test personalized loyalty benefits and proactive service for customers contributing the largest share of identified-customer spending.
+2. **Encourage a second purchase.** Test post-purchase follow-ups, relevant recommendations, and targeted incentives during the first month after acquisition.
+3. **Re-engage formerly valuable customers.** Prioritize dormant high-spend customers for carefully measured win-back campaigns.
+4. **Improve CustomerID capture.** Investigate the 132,186 unidentified sales lines to improve future customer-level analysis coverage.
+5. **Monitor comparable cohorts.** Use consistent observation windows and treat partial-month observations separately.
 
-This project demonstrates how SQL, Python, and customer analytics techniques can transform transaction-level data into practical business insights.
+These are recommendations from descriptive analysis. Their effects have not been established by controlled experiments.
 
-The analysis highlights customer spending concentration, retention, purchasing frequency, and exploratory churn-risk indicators. It does not estimate predictive customer lifetime value.
+## 8. Limitations and Project Status
 
-The main business opportunity is to protect high-value customers, improve repeat purchasing, and identify customers who require targeted retention efforts.
+- The dataset is historical and does not represent current business performance.
+- Transactions without a CustomerID cannot be attributed to an identified customer.
+- December 2011 is an incomplete observation month.
+- RFM summarizes historical behavior; it does not directly measure future customer lifetime value.
+- The re-engagement chart highlights three RFM segments and is not a validated churn model.
+- Full reproduction requires the original transaction dataset and local database / Power BI configuration, which are not included in this lightweight portfolio repository.
 
----
-
-**Project Status:** Core analytical work completed.
-**Portfolio Status:** Selected analysis outputs, documentation, SQL scripts, and the dashboard are packaged; full reproduction requires source data and local configuration.
+**Project status:** Core analytical work completed. Selected derived CSV outputs, visualizations, SQL scripts, documentation, and the Power BI report are included in the repository.
