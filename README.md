@@ -146,6 +146,8 @@ These are **recommendations from descriptive analysis**. Their effects have not 
 
 ## 8. Power BI Dashboard
 
+![Power BI dashboard showing customer segmentation, cohort retention, and revenue trends](visualizations/dashboard.png)
+
 The saved report `Customer_Analytics_v2.pbix` presents customer segmentation, segment and country filters, sales metrics, cohort retention, and new-versus-returning revenue trends.
 
 - **Overall sales card:** approximately £10.64M across the sales dataset.
