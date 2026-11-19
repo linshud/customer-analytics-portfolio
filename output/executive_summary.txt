@@ -1,0 +1,116 @@
+# Customer Analytics — Executive Summary
+
+**Project:** Customer Segmentation, Retention & Revenue Analysis
+**Author:** Wei
+**Tools:** Python (pandas, matplotlib, seaborn), MySQL, Power BI
+**Dataset:** UCI Online Retail Dataset
+
+---
+
+## 1. Project Overview
+
+This project analyzes e-commerce transaction data to understand customer value, purchasing behavior, retention performance, and churn risk.
+
+The objective is to transform raw transaction data into actionable business insights through SQL analysis, Python data analytics, RFM segmentation, cohort retention analysis, and customer risk identification.
+
+## 2. SQL Business Overview
+
+Based on the SQL analysis of `sales_clean_full`:
+
+| Metric | Result |
+|---|---:|
+| Total transaction rows | 524,878 |
+| Total orders | 19,960 |
+| Total customers | 4,338 |
+| Total sales | £10,642,110.80 |
+| Average order value | £533.17 |
+
+## 3. RFM Customer Segmentation
+
+The RFM analysis identified 4,338 customers and classified them into seven customer segments.
+
+| Customer Segment | Customers | Revenue Share |
+|---|---:|---:|
+| Core High-Value Customers | 925 | 67.12% |
+| High-Potential Customers | 395 | 9.96% |
+| Historical High-Spend Dormant | 243 | 6.97% |
+| Active Repeat Customers | 500 | 6.09% |
+| General Dormant Customers | 1,206 | 4.65% |
+| Recent Low-Frequency Customers | 759 | 3.16% |
+| General Maintenance Customers | 310 | 2.05% |
+
+**Key Finding:**
+
+Core high-value customers represent approximately 21.32% of the customer base but contribute 67.12% of RFM-based customer spending.
+
+Customer retention and loyalty among this segment should be a major business priority.
+
+Total RFM customer spending: £8,887,208.89.
+
+## 4. Cohort Retention Analysis
+
+Customers were grouped by their first recorded purchase month to evaluate repeat purchasing behavior over time.
+
+**Updated Key Findings:**
+
+- December 2010 cohort: 36.61% Month-1 retention.
+- January 2011 cohort: 22.06% Month-1 retention.
+- February 2011 cohort: 18.68% Month-1 retention.
+- March 2011 cohort: 15.04% Month-1 retention.
+- April 2011 cohort: 21.33% Month-1 retention.
+
+Several cohorts experienced substantial decreases in purchasing activity after their first purchase month.
+
+The results suggest an opportunity to improve early customer retention through second-purchase incentives, personalized recommendations, and targeted follow-up communication.
+
+**Limitation:** The dataset ends on December 9, 2011. Retention results involving December 2011 are affected by incomplete observation periods and should be interpreted cautiously.
+
+## 5. Churn Risk Analysis
+
+Customers with historical purchasing activity and extended periods of inactivity were identified for potential re-engagement.
+
+**At-Risk Customer Results:**
+
+| Risk Segment | Customers |
+|---|---:|
+| At Risk | 235 |
+| Needs Attention | 72 |
+| Cannot Lose | 4 |
+| **Total** | **311** |
+
+These exploratory risk labels use a different framework from the final seven RFM segments; they must be validated before operational use.
+
+## 6. Key Business Recommendations
+
+**1. Protect High-Value Customers**
+
+Develop loyalty programs, exclusive offers, and personalized engagement strategies for core high-value customers.
+
+**2. Improve First-Month Retention**
+
+Introduce post-purchase reminders, targeted promotions, and second-purchase incentives to encourage repeat transactions.
+
+**3. Launch Win-Back Campaigns**
+
+Prioritize inactive customers with high historical spending and develop personalized re-engagement campaigns.
+
+**4. Investigate Cohort Performance**
+
+Investigate possible explanations for the December 2010 cohort’s higher retention, taking cohort differences and incomplete observation windows into account.
+
+**5. Develop Customer-Specific Marketing**
+
+Use RFM segments to design differentiated marketing strategies rather than applying the same campaign to every customer.
+
+## 7. Conclusion
+
+This project demonstrates how SQL, Python, and customer analytics techniques can transform transaction-level data into practical business insights.
+
+The analysis highlights customer spending concentration, retention, purchasing frequency, and exploratory churn-risk indicators. It does not estimate predictive customer lifetime value.
+
+The main business opportunity is to protect high-value customers, improve repeat purchasing, and identify customers who require targeted retention efforts.
+
+---
+
+**Project Status:** Core analytical work completed.
+**Portfolio Status:** Selected analysis outputs, documentation, SQL scripts, and the dashboard are packaged; full reproduction requires source data and local configuration.

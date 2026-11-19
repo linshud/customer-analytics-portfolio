@@ -1,0 +1,8 @@
+﻿文件,记录数,销售金额,缺失客户ID行数,负数数量行数,取消订单行数,完全重复行数,RFM金额
+online_retail_sales_clean.csv,524878,10642110.804000001,132186.0,0.0,0.0,0.0,
+online_retail_crm_clean.csv,392692,8887208.894000001,0.0,0.0,0.0,0.0,
+unidentified_customer_sales.csv,132186,1754901.9099999997,132186.0,0.0,0.0,0.0,
+rfm_customer_summary.csv,4338,,,,,,8887208.894
+rfm_scored.csv,4338,,,,,,8887208.894
+rfm_segmented.csv,4338,,,,,,8887208.894
+rfm_segment_summary.csv,7,,,,,,8887208.894000001
