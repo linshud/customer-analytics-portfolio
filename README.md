@@ -115,24 +115,24 @@ The reconciliation report identifies **132,186 sales lines** without a CustomerI
 
 This distinction matters: treating £8.89M as the company's *entire* revenue would understate the £10.64M sales total.
 
-The separate visualization below examines **new versus returning customer revenue**. It is a different breakdown from the *identified versus unidentified* customer reconciliation above.
+The separate visualization below examines **new versus returning customer revenue among identified customers only**. It excludes transactions without a CustomerID and therefore represents a different breakdown from the *identified versus unidentified* customer reconciliation above; it should not be interpreted as a decomposition of overall sales.
 
 ![New versus returning revenue decomposition](visualizations/revenue_decomposition.png)
 
-## 6. Customer Churn-Risk Exploration
+## 6. Re-engagement Opportunity Exploration
 
-An existing exploratory visualization groups potentially at-risk customers as follows:
+The updated exploratory visualization highlights three RFM segments for closer retention and win-back attention. The counts below match the corresponding segments in Section 3:
 
-| Visualization risk group | Customers |
+| RFM segment | Customers |
 |---|---:|
-| At Risk | 235 |
-| Needs Attention | 72 |
-| Cannot Lose | 4 |
-| **Total** | **311** |
+| General Dormant Customers | 1,206 |
+| Recent Low-Frequency Customers | 759 |
+| Historical High-Spend Dormant Customers | 243 |
+| **Total shown** | **2,208** |
 
-**Important:** These risk-group labels come from a separate visualization classification and **are not equivalent to the seven final RFM segments**. The criteria would need to be reconciled and validated before using the 311-customer list operationally. This is a descriptive risk view, **not a trained or validated churn-prediction model**.
+**Interpretation:** These are three of the seven existing RFM segments, not separate churn-model classes. The chart's "at-risk" framing is descriptive: it summarizes historical purchase behavior and does not predict which customers will churn. Historical High-Spend Dormant Customers may be candidates for win-back outreach, while Recent Low-Frequency Customers may warrant second-purchase engagement. Validate customer eligibility and campaign rules before operational use.
 
-![Exploratory churn-risk visualization](visualizations/churn_risk.png)
+![Exploratory re-engagement visualization](visualizations/churn_risk.png)
 
 ## 7. Business Recommendations
 
@@ -233,7 +233,7 @@ This writes a chart to `visualizations/` based on `data/cohort_retention.csv`; c
 - Transactions without a CustomerID cannot be attributed to an identified customer.
 - The final observed month, December 2011, is incomplete.
 - RFM summarizes historical behavior; it does not directly measure future customer lifetime value.
-- Churn-risk chart groups are from a separate exploratory classification, not the final seven-segment RFM framework.
+- The re-engagement chart highlights three of the seven RFM segments; its at-risk framing is descriptive, not a trained or validated churn-prediction model.
 - Proposed marketing actions require controlled evaluation before causal benefits can be claimed.
 
 ## 12. Deliverables
